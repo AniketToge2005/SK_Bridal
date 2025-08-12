@@ -284,217 +284,180 @@ function toggleCard() {
         
 <!-- /* video */ -->
 
-<title>Our Video Gallery</title>
-<style>
-    :root {
-        --primary-color: #4361ee;
-        --secondary-color: #3f37c9;
-        --accent-color: #4895ef;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-    }
-    
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: var(--light-color);
-        color: var(--dark-color);
-        line-height: 1.6;
-    }
 
-    .video-section {
-        padding: 60px 20px;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
+    <style>
+        /* :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light-color);
+            color: var(--dark-color);
+        } */
 
-    .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-        animation: fadeInUp 0.8s ease-out;
-    }
+        .video-section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .section-header h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-        position: relative;
-        display: inline-block;
-    }
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
 
-    .section-header h2::after {
-        content: '';
-        position: absolute;
-        width: 60%;
-        height: 4px;
-        background: var(--accent-color);
-        bottom: -10px;
-        left: 20%;
-        border-radius: 2px;
-        animation: scaleIn 0.8s ease-out;
-    }
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
 
-    @keyframes scaleIn {
-        from { transform: scaleX(0); }
-        to { transform: scaleX(1); }
-    }
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
 
-    .section-header p {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        max-width: 700px;
-        margin: 0 auto;
-    }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
 
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 25px;
-    }
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
 
-    .video-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        animation: fadeInUp 0.6s ease-out;
-    }
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
 
-    .video-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
+        .video-info {
+            padding: 20px;
+        }
 
-    .video-thumbnail {
-        position: relative;
-        padding-top: 56.25%;
-        overflow: hidden;
-    }
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
 
-    .video-thumbnail video {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        border: none;
-        object-fit: cover;
-    }
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
 
-    .play-icon {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60px; height: 60px;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+        }
 
-    .play-icon::before {
-        content: '';
-        border-top: 15px solid transparent;
-        border-left: 25px solid var(--primary-color);
-        border-bottom: 15px solid transparent;
-        margin-left: 5px;
-    }
-
-    .video-card:hover .play-icon {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    .video-info {
-        padding: 15px;
-    }
-
-    .video-title {
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 5px;
-        color: var(--dark-color);
-    }
-
-    .video-meta {
-        font-size: 0.85rem;
-        color: var(--gray-color);
-        display: flex;
-        justify-content: space-between;
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-        .video-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 768px) {
-        .video-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-        .video-grid { grid-template-columns: 1fr; }
-    }
-</style>
+        @media (max-width: 480px) {
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-section {
+                padding: 40px 15px;
+            }
+        }
+    </style>
 
 
-<div id="video" class="video-section">
+    <title>Professional Video Gallery</title>
+<section class="video-section">
     <div class="section-header">
         <h2>Our Video Gallery</h2>
-        <p>Explore our collection of videos showcasing our work, tutorials, and success stories</p>
+        <p>Explore our professional video collection</p>
     </div>
     
-    <div class="video-grid">
+    <div class="video-container">
         <div class="video-card">
-            <div class="video-thumbnail">
-                <video poster="public/video1-poster.jpg">
+            <div class="video-wrapper">
+                <video controls poster="https://via.placeholder.com/800x450/4361ee/ffffff?text=Video+1">
                     <source src="public/video1.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
                 </video>
-                <div class="play-icon"></div>
             </div>
             <div class="video-info">
-                <h3 class="video-title"></h3>
-                <div class="video-meta"><span>8.5K views</span><span>1 month ago</span></div>
+                <h3 class="video-title">Web Development Tutorial</h3>
+                <div class="video-meta">
+                    <span>12K views</span>
+                    <span>2 weeks ago</span>
+                </div>
             </div>
         </div>
-
-        <div class="video-card">
-            <div class="video-thumbnail">
-                <video poster="public/video2-poster.jpg">
-                    <source src="public/video2.mp4" type="video/mp4">
-                </video>
-                <div class="play-icon"></div>
-            </div>
-            <div class="video-info">
-                <h3 class="video-title"></h3>
-                <div class="video-meta"><span>15K views</span><span>3 weeks ago</span></div>
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="video-thumbnail">
-                <video poster="public/video3-poster.jpg">
-                    <source src="public/video3.mp4" type="video/mp4">
-                </video>
-                <div class="play-icon"></div>
-            </div>
-            <div class="video-info">
-                <h3 class="video-title"></h3>
-                <div class="video-meta"><span>10K views</span><span>2 weeks ago</span></div>
-            </div>
-        </div>
-
         
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="https://via.placeholder.com/800x450/3a0ca3/ffffff?text=Video+2">
+                    <source src="public/video2.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">CSS Techniques</h3>
+                <div class="video-meta">
+                    <span>8.5K views</span>
+                    <span>1 month ago</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-card">
+            <div class="video-wrapper">
+                <video controls poster="https://via.placeholder.com/800x450/4895ef/ffffff?text=Video+3">
+                    <source src="public/video3.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">JavaScript Fundamentals</h3>
+                <div class="video-meta">
+                    <span>15K views</span>
+                    <span>3 weeks ago</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+
 
 
 
@@ -1194,6 +1157,7 @@ function toggleCard() {
 
 
     </html>
+
 
 
 
