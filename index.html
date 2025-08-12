@@ -63,6 +63,7 @@
                     <li><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
+                     <li><a href="#video" class="nav-link">Video</a></li>
                 </ul>
             </div>
         </div>
@@ -279,6 +280,241 @@ function toggleCard() {
                 </div>
             </div>
         </section>
+
+        
+    <style>
+      
+/* video */
+        .video-section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+
+        .video-thumbnail iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-icon::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-left: 25px solid var(--primary-color);
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .view-all-btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .video-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 40px 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+        
+    <div  id="#video"class="video-section">
+    <div class="section-header">
+        <h2>Our Video Gallery</h2>
+        <p>Explore our collection of videos showcasing our work, tutorials, and success stories</p>
+    </div>
+    
+    <div class="video-grid">
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/9YffrCViTVk" allowfullscreen></iframe>
+                <div class="play-icon"></div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Getting Started with Web Development</h3>
+                <div class="video-meta">
+                    <span>12K views</span>
+                    <span>2 weeks ago</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="public/video1.mp4" allowfullscreen></iframe>
+                <div class="play-icon"></div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Advanced CSS Techniques</h3>
+                <div class="video-meta">
+                    <span>8.5K views</span>
+                    <span>1 month ago</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="public/video2.mp4" allowfullscreen></iframe>
+                <div class="play-icon"></div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">JavaScript Fundamentals</h3>
+                <div class="video-meta">
+                    <span>15K views</span>
+                    <span>3 weeks ago</span>
+                </div>
+            </div>
+        </div>
+
+    
+    <div class="view-all">
+        <a href="#" class="view-all-btn">View All Videos</a>
+    </div>
+</div>
+
+
 
         <!-- Services Section -->
         <section id="services" class="services-section">
@@ -975,4 +1211,5 @@ function toggleCard() {
 
 
     </html>
+
 
